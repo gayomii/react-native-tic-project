@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 
 const Splash = ({ navigation }: any) => {
   useEffect(() => {
@@ -11,7 +11,8 @@ const Splash = ({ navigation }: any) => {
 
   return (
     <View style={styles.splashWrapper}>
-      <Icon name="directions-run" size={50} color="#000" />
+      <Icon name="hiking" size={50} color="#000" />
+      <Text style={styles.header}>Today I Climbed</Text>
     </View>
   );
 };
@@ -21,6 +22,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    gap: 24,
+  },
+  header: {
+    fontSize: 24,
   },
 });
 
