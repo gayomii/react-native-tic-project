@@ -1,16 +1,31 @@
 import React from 'react';
-import { View, Text, SafeAreaView, StyleSheet, FlatList } from 'react-native';
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import RenderFeed from '../components/RenderFeed';
 import { dummy_feed } from '../apis/dummyData';
 
 const Home = () => {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView style={styles.homeWrapper}>
       {/* Header */}
       <View style={styles.headerContainer}>
-        <Icon name="hiking" size={30} color="#000" />
-        <Text style={styles.iconText}>TIC</Text>
+        <View style={styles.logo}>
+          <Icon name="hiking" size={30} color="#000" />
+          <Text style={styles.iconText}>TIC</Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Chat' as never)}>
+          <Icon name="envelope" size={20} color="#333" />
+        </TouchableOpacity>
       </View>
       {/* Main */}
       <View style={styles.mainContainer}>
@@ -37,9 +52,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 6,
     borderBottomWidth: 0.5,
-    borderColor: '#e0e0e0',
+    borderColor: '#f2f2f2',
+    justifyContent: 'space-between',
+  },
+  logo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
   },
   iconText: {
     fontSize: 20,

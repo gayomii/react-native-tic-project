@@ -17,7 +17,7 @@ const iconNames: { [key: string]: string } = {
   홈: 'home',
   검색: 'manage-search',
   추가: 'mode-edit',
-  채팅: 'message',
+  캘린더: 'calendar-month',
   마이페이지: 'person',
 };
 
