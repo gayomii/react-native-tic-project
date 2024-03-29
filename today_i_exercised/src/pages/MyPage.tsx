@@ -1,12 +1,20 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
+import PageHeader from '../components/PageHeader';
 
 const MyPage = () => {
   return (
-    <View>
-      <Text>MyPage</Text>
-    </View>
+    <SafeAreaView style={styles.myPageWrapper}>
+      <PageHeader title="마이페이지" />
+    </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  myPageWrapper: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+});
 
 export default MyPage;
