@@ -43,3 +43,5 @@ export const dummy_feed = [
     likeUsers: [1, 2, 3],
   },
 ];
+
+export const dummy_recent_search = ['볼더메이트', '클린이', '더클라임사당점'];
