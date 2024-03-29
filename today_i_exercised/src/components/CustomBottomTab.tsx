@@ -16,7 +16,7 @@ const buttomIcon = ({ name, type = 'inactive' }: IconProps) => {
 const iconNames: { [key: string]: string } = {
   홈: 'home',
   검색: 'manage-search',
-  추가: 'mode-edit',
+  기록하기: 'mode-edit',
   캘린더: 'calendar-month',
   마이페이지: 'person',
 };

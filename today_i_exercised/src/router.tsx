@@ -30,7 +30,7 @@ const MainTab = () => {
       }}>
       <Tab.Screen name="홈" component={Home} />
       <Tab.Screen name="검색" component={Search} />
-      <Tab.Screen name="추가" component={NewPost} />
+      <Tab.Screen name="기록하기" component={NewPost} />
       <Tab.Screen name="캘린더" component={Calendar} />
       <Tab.Screen name="마이페이지" component={MyPage} />
     </Tab.Navigator>

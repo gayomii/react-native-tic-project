@@ -8,7 +8,7 @@ export type RootStackParamList = {
 export type RootBottomTabParamList = {
   홈: undefined;
   검색: undefined;
-  추가: undefined;
+  기록하기: undefined;
   캘린더: undefined;
   마이페이지: undefined;
 };
