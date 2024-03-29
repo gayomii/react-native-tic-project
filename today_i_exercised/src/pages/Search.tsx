@@ -19,13 +19,16 @@ const { width } = Dimensions.get('window');
 const Search = () => {
   const navigation = useNavigation();
   const [keyword, setKeyword] = useState('');
+  const [recentHistory, setRecentHistory] = useState(dummy_recent_search);
+
   const handleCancelButton = () => {
     setKeyword('');
     Keyboard.dismiss();
   };
 
-  // TODO: Type check
   const submitKeyword = (keyword: string) => {
+    setRecentHistory(Array.from(new Set([...recentHistory, keyword])));
+    setKeyword('');
     navigation.navigate(
       'SearchResult' as never,
       {
@@ -34,7 +37,13 @@ const Search = () => {
     );
   };
 
-  const RecentSearchHistory = ({ item }: { item: string }) => {
+  const RecentSearchHistory = ({
+    item,
+    deleteItem,
+  }: {
+    item: string;
+    deleteItem: () => void;
+  }) => {
     return (
       <View style={styles.searchHistoryContainer}>
         <TouchableOpacity
@@ -43,7 +52,7 @@ const Search = () => {
           }}>
           <Text style={styles.searchHistoryText}>{item}</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={deleteItem}>
           <Icon name="clear" size={16} color="#c3c3c3" />
         </TouchableOpacity>
       </View>
@@ -82,10 +91,28 @@ const Search = () => {
         <View style={styles.recentTitle}>
           <Text style={styles.recentText}>최근 검색어</Text>
           <TouchableOpacity>
-            <Text style={styles.deleteText}>전체 삭제</Text>
+            <Text style={styles.deleteText} onPress={() => setRecentHistory([])}>
+              전체 삭제
+            </Text>
           </TouchableOpacity>
         </View>
-        <FlatList data={dummy_recent_search} renderItem={RecentSearchHistory} />
+        <FlatList
+          data={recentHistory}
+          renderItem={({ item, index }) => {
+            return (
+              <RecentSearchHistory
+                item={item}
+                deleteItem={() => {
+                  setRecentHistory(
+                    recentHistory.filter(
+                      (_item, recentHistoryIndex) => recentHistoryIndex !== index,
+                    ),
+                  );
+                }}
+              />
+            );
+          }}
+        />
       </View>
     </SafeAreaView>
   );
