@@ -19,7 +19,15 @@ export type FeedType = {
   profileImg: string;
   feedImg: string[];
   contents: string | undefined;
+  hashTag: string[];
   createdAt: number;
   like: number;
   likeUsers: number[];
+  comments?: CommentType[];
+};
+
+export type CommentType = {
+  userName: string;
+  comment: string;
+  createdAt: number;
 };
