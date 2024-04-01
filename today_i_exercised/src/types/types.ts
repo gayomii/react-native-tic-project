@@ -1,8 +1,9 @@
 export type RootStackParamList = {
   Splash: undefined;
   MainTab: undefined;
-  SearchResult: undefined;
+  SearchResult: { keyword: string } | undefined;
   Chat: undefined;
+  NewPostDetailPage: { images: ImageType[] } | undefined;
 };
 
 export type RootBottomTabParamList = {
@@ -30,4 +31,16 @@ export type CommentType = {
   userName: string;
   comment: string;
   createdAt: number;
+};
+
+export type ImageType = {
+  filename: string | null;
+  filepath: string | null;
+  extension: string | null;
+  uri: string;
+  height: number;
+  width: number;
+  fileSize: number | null;
+  playableDuration: number;
+  orientation: number | null;
 };

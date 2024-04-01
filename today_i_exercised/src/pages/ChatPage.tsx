@@ -2,19 +2,19 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet } from 'react-native';
 import PageHeader from '../components/PageHeader';
 
-const Calendar = () => {
+const ChatPage = () => {
   return (
-    <SafeAreaView style={styles.calendarWrapper}>
-      <PageHeader title="캘린더" />
+    <SafeAreaView style={styles.chatWrapper}>
+      <PageHeader title="채팅" />
     </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
-  calendarWrapper: {
+  chatWrapper: {
     flex: 1,
     backgroundColor: '#fff',
   },
 });
 
-export default Calendar;
+export default ChatPage;

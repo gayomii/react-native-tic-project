@@ -13,11 +13,13 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { dummy_recent_search } from '../apis/dummyData';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types/types';
 
 const { width } = Dimensions.get('window');
 
-const Search = () => {
-  const navigation = useNavigation();
+const SearchPage = () => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [keyword, setKeyword] = useState('');
   const [recentHistory, setRecentHistory] = useState(dummy_recent_search);
 
@@ -29,12 +31,9 @@ const Search = () => {
   const submitKeyword = (keyword: string) => {
     setRecentHistory(Array.from(new Set([...recentHistory, keyword])));
     setKeyword('');
-    navigation.navigate(
-      'SearchResult' as never,
-      {
-        keyword,
-      } as never,
-    );
+    navigation.navigate('SearchResult', {
+      keyword,
+    });
   };
 
   const RecentSearchHistory = ({
@@ -173,4 +172,4 @@ const styles = StyleSheet.create({
   searchHistoryText: { fontSize: 16, color: '#3a3a3a' },
 });
 
-export default Search;
+export default SearchPage;

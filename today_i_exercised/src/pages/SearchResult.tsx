@@ -2,11 +2,13 @@ import React from 'react';
 import { View, Text, SafeAreaView, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types/types';
 
 const SearchResult = () => {
   const params: any = useRoute().params;
-  const keyword = params?.keyword || 'test';
-  const navigation = useNavigation();
+  const keyword = params?.keyword || '';
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <SafeAreaView>
