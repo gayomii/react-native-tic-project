@@ -57,8 +57,8 @@ const RenderFeed = ({ item }: { item: FeedType }) => {
             </TouchableOpacity>
           </View>
           <View style={styles.hashTags}>
-            {item.hashTag.map((tag, index) => (
-              <TouchableOpacity style={styles.hashTagBtn} key={index}>
+            {item.hashTag.map(tag => (
+              <TouchableOpacity style={styles.hashTagBtn} key={tag}>
                 <Text style={styles.hashTag}># {tag}</Text>
               </TouchableOpacity>
             ))}
