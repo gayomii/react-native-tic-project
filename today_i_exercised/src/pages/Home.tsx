@@ -6,11 +6,14 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Image,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import RenderFeed from '../components/RenderFeed';
 import { dummy_feed } from '../apis/dummyData';
+
+const logo = require('../assets/logo.png');
 
 const Home = () => {
   const navigation = useNavigation();
@@ -20,8 +23,7 @@ const Home = () => {
       {/* Header */}
       <View style={styles.headerContainer}>
         <View style={styles.logo}>
-          <Icon name="hiking" size={30} color="#000" />
-          <Text style={styles.iconText}>TIC</Text>
+          <Image source={logo} style={styles.logoImg} />
         </View>
         <TouchableOpacity onPress={() => navigation.navigate('Chat' as never)}>
           <Icon name="envelope" size={20} color="#333" />
@@ -31,7 +33,9 @@ const Home = () => {
       <View style={styles.mainContainer}>
         <FlatList
           data={dummy_feed}
-          renderItem={RenderFeed}
+          renderItem={({ item, index }) => {
+            return <RenderFeed item={item} />;
+          }}
           keyExtractor={(item, index) => index.toString()}
           removeClippedSubviews
           showsVerticalScrollIndicator={false}
@@ -60,6 +64,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 6,
+  },
+  logoImg: {
+    height: 24,
+    width: 76,
   },
   iconText: {
     fontSize: 20,

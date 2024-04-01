@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -9,12 +9,15 @@ import {
   FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+
 import { FeedType } from '../types/types';
 import { setAgoDays } from '../utils/setAgoDays';
+import CommentsModal from './CommentsModal';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const RenderFeed = ({ item }: { item: FeedType }) => {
+  const [showModal, setShowModal] = useState(false);
   const createdDate = setAgoDays(item.createdAt);
 
   return (
@@ -40,19 +43,46 @@ const RenderFeed = ({ item }: { item: FeedType }) => {
       />
 
       <View style={styles.feedBottom}>
-        <View style={styles.feedIcons}>
-          <TouchableOpacity>
-            <Icon name="hearto" size={22} color="#000" />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => console.log('touch comment icon')}>
-            <Icon name="message1" size={22} color="#000" />
-          </TouchableOpacity>
+        <View style={styles.feedFeatures}>
+          <View style={styles.feedIcons}>
+            <TouchableOpacity>
+              <Icon name="hearto" size={22} color="#000" />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                setShowModal(!showModal);
+                console.log('comment icon');
+              }}>
+              <Icon name="message1" size={22} color="#000" />
+            </TouchableOpacity>
+          </View>
+          <View style={styles.hashTags}>
+            {item.hashTag.map((tag, index) => (
+              <TouchableOpacity style={styles.hashTagBtn} key={index}>
+                <Text style={styles.hashTag}># {tag}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
         <View style={styles.feedContentsContainer}>
           <Text style={styles.feedContents}>{item.contents}</Text>
           <Text style={styles.feedTime}>{createdDate}</Text>
         </View>
       </View>
+
+      {/* modal */}
+      <CommentsModal
+        showModal={showModal}
+        setShowModal={setShowModal}
+        item={item}
+        leaveComment={(comment: string) =>
+          item.comments.push({
+            comment,
+            userName: 'test',
+            createdAt: new Date().getTime(),
+          })
+        }
+      />
     </View>
   );
 };
@@ -110,6 +140,18 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     gap: 12,
   },
+  feedFeatures: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  hashTags: { flexDirection: 'row', gap: 4 },
+  hashTagBtn: {
+    borderRadius: 4,
+    backgroundColor: '#F3F3F3',
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  hashTag: { fontSize: 14, color: '#7B7B7B' },
   feedIcons: { flexDirection: 'row', alignItems: 'center', gap: 16 },
   feedContentsContainer: { gap: 6, marginBottom: 32 },
   feedContents: { color: '#000', fontSize: 16 },

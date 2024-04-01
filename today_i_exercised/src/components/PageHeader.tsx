@@ -42,7 +42,11 @@ const styles = StyleSheet.create({
     marginRight: 'auto',
   },
   titleContainer: { flex: 1 },
-  title: { textAlign: 'center', fontWeight: '600', fontSize: 16 },
+  title: {
+    textAlign: 'center',
+    fontWeight: '600',
+    fontSize: 16,
+  },
 });
 
 export default PageHeader;
