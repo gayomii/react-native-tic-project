@@ -48,23 +48,29 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>
-    <string>Entypo.ttf</string>
-    <string>EvilIcons.ttf</string>
-    <string>Feather.ttf</string>
-    <string>FontAwesome.ttf</string>
-    <string>FontAwesome5_Brands.ttf</string>
-    <string>FontAwesome5_Regular.ttf</string>
-    <string>FontAwesome5_Solid.ttf</string>
-    <string>Foundation.ttf</string>
-    <string>Ionicons.ttf</string>
-    <string>MaterialCommunityIcons.ttf</string>
-    <string>MaterialIcons.ttf</string>
-    <string>Octicons.ttf</string>
-    <string>SimpleLineIcons.ttf</string>
-    <string>Zocial.ttf</string>
-    <string>Fontisto.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Fontisto.ttf</string>
 	</array>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>앨범을 오픈할 때 사용</string>
+	<key>NSCameraUsageDescription</key>
+	<string>카메라를 오픈할 때 사용</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>앨범을 오픈할 때 사용</string>
 </dict>
 </plist>
