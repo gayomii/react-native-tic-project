@@ -12,11 +12,13 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import RenderFeed from '../components/RenderFeed';
 import { dummy_feed } from '../apis/dummyData';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types/types';
 
 const logo = require('../assets/logo.png');
 
 const Home = () => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <SafeAreaView style={styles.homeWrapper}>
@@ -25,7 +27,7 @@ const Home = () => {
         <View style={styles.logo}>
           <Image source={logo} style={styles.logoImg} />
         </View>
-        <TouchableOpacity onPress={() => navigation.navigate('Chat' as never)}>
+        <TouchableOpacity onPress={() => navigation.navigate('Chat')}>
           <Icon name="envelope" size={20} color="#333" />
         </TouchableOpacity>
       </View>
