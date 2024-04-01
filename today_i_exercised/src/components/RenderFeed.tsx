@@ -9,15 +9,19 @@ import {
   FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-import { FeedType } from '../types/types';
+import { FeedType, RootStackParamList } from '../types/types';
 import { setAgoDays } from '../utils/setAgoDays';
 import CommentsModal from './CommentsModal';
 
 const { width, height } = Dimensions.get('window');
 
 const RenderFeed = ({ item }: { item: FeedType }) => {
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
   const [showModal, setShowModal] = useState(false);
+  const [comments, setComments] = useState(item.comments || []);
   const createdDate = setAgoDays(item.createdAt);
 
   return (
@@ -51,14 +55,16 @@ const RenderFeed = ({ item }: { item: FeedType }) => {
             <TouchableOpacity
               onPress={() => {
                 setShowModal(!showModal);
-                console.log('comment icon');
               }}>
               <Icon name="message1" size={22} color="#000" />
             </TouchableOpacity>
           </View>
           <View style={styles.hashTags}>
             {item.hashTag.map(tag => (
-              <TouchableOpacity style={styles.hashTagBtn} key={tag}>
+              <TouchableOpacity
+                style={styles.hashTagBtn}
+                key={tag}
+                onPressIn={() => navigation.navigate('SearchResult', { keyword: tag })}>
                 <Text style={styles.hashTag}># {tag}</Text>
               </TouchableOpacity>
             ))}
@@ -75,13 +81,24 @@ const RenderFeed = ({ item }: { item: FeedType }) => {
         showModal={showModal}
         setShowModal={setShowModal}
         item={item}
-        leaveComment={(comment: string) =>
+        leaveComment={(comment: string) => {
+          setComments([
+            ...comments,
+            {
+              comment,
+              userName: 'test',
+              createdAt: new Date().getTime(),
+            },
+          ]);
+
           item.comments.push({
             comment,
             userName: 'test',
             createdAt: new Date().getTime(),
-          })
-        }
+          });
+
+          return true;
+        }}
       />
     </View>
   );

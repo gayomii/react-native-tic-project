@@ -12,6 +12,7 @@ import {
   FlatList,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { default as Octicon } from 'react-native-vector-icons/Octicons';
 import { dummy_recent_search } from '../apis/dummyData';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types/types';
@@ -66,7 +67,7 @@ const SearchPage = () => {
           <Icon name="chevron-left" size={28} color="#000" />
         </TouchableOpacity>
         <View style={styles.searchSection}>
-          <Icon name="search" size={24} color="#7b7b7b" />
+          <Octicon name="hash" size={20} color="#7b7b7b" />
           <TextInput
             style={styles.inputStyle}
             returnKeyType="search"
