@@ -35,8 +35,9 @@ export const dummy_feed = [
     feedImg: ['https://picsum.photos/400/400'],
     contents: '오늘은 넘넘 힘들었따,,,;;',
     hashTag: ['오운완', '클라이밍'],
-    like: 13,
+    comments: [],
     createdAt: 1711527772724,
+    like: 13,
     likeUsers: [1, 2, 3],
   },
   {
@@ -53,6 +54,7 @@ export const dummy_feed = [
     ],
     contents: '❤️❤️❤️❤️❤️❤️❤️ 빨강 많이 깼다~',
     hashTag: ['오운완', '주말클라이밍'],
+    comments: [],
     createdAt: 1701417772736,
     like: 27,
     likeUsers: [1, 2, 3],
