@@ -103,7 +103,10 @@ const CommentsModal = ({
             <TouchableOpacity
               style={styles.commentButton}
               onPress={() => {
-                leaveComment(commentValue);
+                if (commentValue) {
+                  leaveComment(commentValue);
+                  setCommentValue('');
+                } else alert('댓글을 입력해주세요.');
               }}>
               <Text style={styles.commentButtonText}>등록</Text>
             </TouchableOpacity>
