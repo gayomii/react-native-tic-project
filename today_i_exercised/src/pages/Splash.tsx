@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import { View, Text, StyleSheet, Image } from 'react-native';
+
+const logo = require('../assets/logo.png');
 
 const Splash = ({ navigation }: any) => {
   useEffect(() => {
@@ -11,8 +12,8 @@ const Splash = ({ navigation }: any) => {
 
   return (
     <View style={styles.splashWrapper}>
-      <Icon name="hiking" size={50} color="#000" />
-      <Text style={styles.header}>Today I Climbed</Text>
+      <Image source={logo} style={styles.logoImg} />
+      <Text style={styles.subTitle}>Today I Climbed...</Text>
     </View>
   );
 };
@@ -22,9 +23,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 24,
+    gap: 12,
   },
-  header: {
+  logoImg: {
+    width: 76,
+    height: 30,
+  },
+  subTitle: {
     fontSize: 24,
   },
 });
