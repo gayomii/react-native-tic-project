@@ -30,7 +30,8 @@ const CustomBottomTab = ({ state, navigation, insets }: BottomTabBarProps) => {
       target: route.key,
       canPreventDefault: true,
     });
-    const isFocused = focusedIndex === index;
+
+    const isFocused = routes[focusedIndex].name === route.name;
     if (!isFocused && !event.defaultPrevented) {
       navigation.navigate(route.name);
     }
