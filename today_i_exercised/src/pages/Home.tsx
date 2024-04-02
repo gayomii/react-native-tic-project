@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   Text,
@@ -20,6 +20,11 @@ const logo = require('../assets/logo.png');
 const Home = () => {
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
+  let feedList = dummy_feed;
+  useEffect(() => {
+    feedList = dummy_feed.sort((a, b) => b.createdAt - a.createdAt);
+  }, [dummy_feed]);
+
   return (
     <SafeAreaView style={styles.homeWrapper}>
       {/* Header */}
@@ -34,7 +39,7 @@ const Home = () => {
       {/* Main */}
       <View style={styles.mainContainer}>
         <FlatList
-          data={dummy_feed}
+          data={feedList}
           renderItem={({ item, index }) => {
             return <RenderFeed item={item} />;
           }}

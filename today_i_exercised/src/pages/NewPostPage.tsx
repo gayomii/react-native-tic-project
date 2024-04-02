@@ -87,9 +87,21 @@ const NewPost = () => {
         keyExtractor={item => item.filename}
         removeClippedSubviews
         showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => (
-          <View>
+        renderItem={({ item, index }) => (
+          <View style={styles.selectedImageContainer}>
             <Image source={{ uri: item.uri }} style={styles.selectedImage} />
+            <TouchableOpacity
+              style={styles.deleteBtn}
+              onPress={() => {
+                setSelectedImages(
+                  selectedImages.filter(image => image.filename !== item.filename),
+                );
+              }}>
+              <Text style={styles.deleteBtnText}>X</Text>
+            </TouchableOpacity>
+            <Text style={styles.imgCount}>
+              {index + 1} / {selectedImages.length}
+            </Text>
           </View>
         )}
       />
@@ -109,14 +121,43 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  selectedImage: {
+  selectedImageContainer: {
     width,
     height: width,
+  },
+  selectedImage: {
+    width: '100%',
+    height: '100%',
   },
   nextButton: {
     fontSize: 14,
     fontWeight: '600',
     color: '#4AABFF',
+  },
+  deleteBtn: {
+    position: 'absolute',
+    right: 5,
+    top: 0,
+    fontSize: 16,
+    backgroundColor: '#000',
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  deleteBtnText: {
+    color: '#fff',
+  },
+  imgCount: {
+    position: 'absolute',
+    right: 5,
+    bottom: 5,
+    fontSize: 14,
+    color: '#fff',
+    backgroundColor: '#333',
+    opacity: 0.4,
+    padding: 5,
   },
 });
 

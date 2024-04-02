@@ -2,6 +2,8 @@ import React, { ReactElement } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types/types';
 
 type HeaderProps = {
   title: string;
@@ -11,7 +13,7 @@ type HeaderProps = {
 const { width } = Dimensions.get('window');
 
 const PageHeader = ({ title, rightChild }: HeaderProps) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
   return (
     <View style={styles.headerWrapper}>
